@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="MRAG-Bench: Vision-Centric Evaluation for Retrieval-Augmented Multimodal Models">
+
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Multimodal Benchmark, Multimodal Learning, Vision and Language Dataset, Vision Language Model, LLM, VLM">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>MRAG-Bench</title>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+      'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-MFCT45H');</script>
+  <!-- End Google Tag Manager -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="icon" href="static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  </head>
+  <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MFCT45H" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://mragbench.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://gordonhu608.github.io/mqtllava/">
+            MQT-LLaVA
+          </a>
+          <a class="navbar-item" href="https://gordonhu608.github.io/bliva/">
+            BLIVA
+          </a>
+          <a class="navbar-item" href="https://gordonhu608.github.io/VALOR-Eval/">
+            VALOR-Eval
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title"><img src="static/images/icon.png" width="50" /> MRAG-Bench: Vision-Centric Evaluation for Retrieval-Augmented Multimodal Models</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+                <!-- <span class="author-block">
+                  <a href="https://gordonhu608.github.io/" target="_blank"><font color="#9fc5e8"><b>Wenbo Hu</b></font></a><sup>1</sup>&emsp;
+                </span> -->
+                <span class="author-block">
+                  <a href="https://gordonhu608.github.io/" target="_blank">Wenbo Hu</a><sup>1</sup>,&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://jasonforjoy.github.io/" target="_blank">Jia-Chen Gu</a><sup>1</sup>,&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://zdou0830.github.io/" target="_blank">Zi-Yi Dou</a><sup>1</sup>,&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://mohsenfayyaz.github.io/" target="_blank">Mohsen Fayyaz</a><sup>1</sup>,&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://lupantech.github.io/" target="_blank">Pan Lu</a><sup>2</sup>,&emsp;
+                </span>
+                <br>
+                <span class="author-block">
+                  <a href="http://web.cs.ucla.edu/~kwchang/" target="_blank">Kai-Wei Chang</a><sup>1</sup>,&emsp;
+                </span>
+                <span class="author-block">
+                  <a href="https://violetpeng.github.io/" target="_blank">Nanyun Peng</a><sup>1</sup>&emsp;
+                </span>
+                </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">
+                      <sup>1</sup>UCLA&emsp;
+                      <sup>2</sup>Stanford University&emsp;
+                    </span>
+                    <!-- <span class="author-block">Institution Name<br>Conferance name and year</span> -->
+                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Equal Contribution</small></span> -->
+                  </div>
+<!-- 
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">
+                      <sup>*</sup>Equal Leadership&emsp;
+                      <sup>†</sup>Equal Contribution
+                    </span>
+                  </div> -->
+
+                  <div class="content has-text-centered">
+                    <div class="publication-links">
+                      <span class="link-block">
+                        <a href="https://arxiv.org/abs/" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <span class="link-block">
+                      <a href="https://huggingface.co/datasets/" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fa fa-database"></i>
+                      </span>
+                      <span>HF Dataset</span>
+                    </a>
+                  </span>
+                  </span>
+
+                  <span class="link-block">
+                    <a href="https://github.com/" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                  </span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser image-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3 has-text-centered">MRAG-Bench</h2>
+      <h2 class="subtitle has-text-justified">
+        <span style="font-weight:bold;">MRAG-Bench  </span>
+        consists of 16,130 images and 1,353 human-annotated multiple-choice questions across 9 distinct scenarios, providing a robust and systematic evaluation of Large Vision Language Model (LVLM)'s vision-centric multimodal retrieval-augmented generation (RAG) abilities. </h2>
+      <img src="static/images/teaser.png" height="100%"/>
+      <!-- <h2 class="subtitle has-text-centered">Example tasks in <span style="font-weight:bold;">BLINK</span>.</h2> -->
+      <h2 class="hero-body has-text-centered">
+        <!-- <br> -->
+        Example scenarios from <span style="font-weight:bold;">MRAG-Bench</span>. Previous benchmarks mainly focused on retrieving from textual knowledge. 
+        However, there are scenarios where retrieving correct textual knowledge is hard and not as useful as visual knowledge.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser image -->
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">MRAG-Bench -- Composition</h2>
+        <h2 class="content has-text-justified">
+          <img src="static/images/stat.png" height="100%"/>
+          <br>
+        <ul>
+          <li><b>MRAG-Bench</b> provides a  <i><b>systematic evaluation across 9 distinctive multimodal RAG scenarios</b></i>, with four scenarios focused on the perspective understanding of visual entities, four on transformative understanding, and one categorized as others.</li>
+          <li><b>MRAG-Bench</b> focuses on evaluating LVLMs in utilizing vision-centric retrieval-augmented multimodal knowledge. "Diverse scenarios" refers to whether a benchmark categorized different scenarios during evaluation. </li>
+          <br>
+        </ul>
+        <img src="static/images/comparison.png" height="100%"/> <br>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Paper abstract -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Existing multimodal retrieval benchmarks primarily focus on evaluating whether models can retrieve and utilize external textual knowledge for question answering. However, there are scenarios where retrieving visual information is either more beneficial or easier to access than textual data. In this paper, we introduce a multimodal retrieval-augmented generation benchmark, <b>MRAG-Bench</b>, in which we systematically identify and categorize scenarios where visually augmented knowledge is better than textual knowledge, for instance, more images from varying viewpoints. <b>MRAG-Bench</b> consists of 16,130 images and 1,353 human-annotated multiple-choice questions across 9 distinct scenarios. With <b>MRAG-Bench</b>, we conduct an evaluation of 10 open-source and 4 proprietary large vision-language models (LVLMs). Our results show that all LVLMs exhibit greater improvements when augmented with images compared to textual knowledge, confirming that <b>MRAG-Bench</b> is vision-centric. Additionally, we conduct extensive analysis with <b>MRAG-Bench</b>, which offers valuable insights into retrieval-augmented LVLMs. Notably, the top-performing model, GPT-4o, faces challenges in effectively leveraging retrieved knowledge, achieving only a 5.82% improvement with ground-truth information, in contrast to a 33.16% improvement observed in human participants. These findings highlight the importance of <b>MRAG-Bench</b> in encouraging the community to enhance LVLMs' ability to utilize retrieved visual knowledge more effectively.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Paper Qualitative -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Qualitative Results</h2>
+        <img src="static/images/qual.png" width="100%"/>
+        <h2 class="content has-text-justified">
+          Qualitative examples on MRAG-BENCH. For each scenario, we show the result of GPT-4o, Gemini Pro, LLaVA-Next-Interleave and Mantis-8B-Siglip. The ground-truth answer is in blue.
+        </h2>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Paper Quantitative -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Quantitative Results</h2>
+        <img src="static/images/quan.png" height="90%"/>
+        <h2 class="content has-text-centered">
+          Accuracy scores on <b>MRAG-BENCH</b>. The highest scores for open-source models in each section and proprietary models are highlighted in blue and red, respectively. Both Retrieved RAG and GT RAG employ top-5 image examples (except for the incomplete task, where a single example is intuitively sufficient). The relative difference in performance compared to the score without RAG is shown in subscript, with blue indicating performance drops and red indicating improvements.
+        </h2>
+        <h2 class="content has-text-justified">
+          The average performance of the most advanced LVLMs is not better than 
+          68.68% without ,multimodal RAG knowlege, and 74.5% with ground-truth knowledge, which 
+              demonstrates <b>MRAG-BENCH</b> to be a challenging benchmark. The mean accuracies of open-
+              source LVLMs are between 26.83% and 53.29% without RAG knowledge and between 28.90% 
+              and 59.28% with ground-truth knowledge, which fall behind from advanced proprietary LVLMs. 
+              Notably, <b>MRAG-BENCH</b> proves to be knowledge-intensive as average humans achieved 38.47% 
+              without RAG knowledge, while proprietary LVLMs generally perform well, suggesting that their 
+              extensive training data equips them with a broader knowledge base. However, when provided with 
+              either retrieved or ground-truth knowledge, humans achieve the most significant improvements of 
+              22.91% and 33.16%, respectively. This underscore the need of LVLMs to better utilize visually 
+              augmented information like humans
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Paper Analysis -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Experiment Analysis</h2> <br>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-5">
+        1. Why can proprietary models better utilize retrieved images?
+        <h2 class="content has-text-justified">
+          We conduct an error analysis on an open-source model (LLaVA-Next-Interleave) and a proprietary model (Gemini Pro). As the example illustrated 
+          in the Figure, the retrieved images contain two correct examples and three false examples. While 
+          Gemini Pro is able to utilize all retrieved images, LLaVA-Next-Interleave leverages bad examples 
+          and makes wrong prediction. This example helps explain why do almost all open-source models 
+          have lower performance with retrieved knowledge. 
+        </h2>
+        <div class="columns is-centered has-text-centered">
+        <img src="static/images/error_analysis.png" width="95%"/> </div>
+        <br>
+        <h2 class="title is-5">2. How much can visual knowledge benefit more than textual knowledge?</h2>
+        <h2 class="content has-text-justified">
+          We used the Wikipedia corpus as of 2023/07/01 as our text knowledge corpus. To ensure a fair 
+            comparison, we employed the same multimodal retriever (CLIP) for retrieving either text or image 
+            knowledge. The top-5 ranked documents or images are used for augmenting the input. We selected 
+            one open-source (LLaVA-Next-Interleave) and one proprietary (GPT-4-Turbo) LVLM to examine 
+            their preference for textual knowledge versus image knowledge on <b>MRAG-BENCH</b>. All the results in the table demonstrate that retrieving visual knowledge is more 
+            helpful than retrieving text on <b>MRAG-BENCH</b>. 
+        </h2>
+        <div class="columns is-centered has-text-centered">
+        <img src="static/images/image_v_text.png" width="95%"/> </div>
+        <br>
+        <h2 class="title is-5">3. How does retriever performance affect LVLMs? </h2>
+        <h2 class="content has-text-justified">
+          <ul>
+            <li>
+              As in the left figure, we evaluated LLaVA-Next-Interleave with 4 different multimodal retrievers. When retrievers achieve higher Recall@5 scores (i.e., better retrieved 
+              examples), the LVLM's accuracy tends to improve, demonstrating a strong 95% positive correlation. 
+              Interestingly, despite similar Recall@5 scores from CLIP and VISTA retrievers, LLaVA-Next-
+              Interleave demonstrated a 2.07% gap in overall accuracy. We conjecture that the order of the 
+              correctly retrieved examples may also impact the model's final performance. The sensitivity to 
+              the order of retrieved examples is a common issue that persists across various models. Although 
+              this phenomenon, known as position bias, has been examined in text-based RAG, its impact on visual RAG remains unexplored, presenting a promising direction for future research.
+            </li>
+          </ul>          
+        </h2>
+        <h2 class="title is-5">4. How many ground-truth image examples are needed? </h2>
+        <h2 class="content has-text-justified">
+          <ul>
+            <li>
+              As in the right figure, we evaluated LLaVA-Next-Interleave using 1, 
+              2, 3, 5, 10, 20 GT examples, averaging the results across three random seeds for sampling the 
+              GT examples. LLaVA-Next-Interleave saw the greatest improvement of 5.64% with just one GT 
+              example. Performance continued to increase steadily, reaching a peak at 10 GT examples, which 
+              was 0.29% higher than with 20 GT examples. One possible explanation could be LLaVA-Next-
+              Interleave may not able to better leverage visually augmented knowledge in long context scenarios. 
+              Moreover, the complexity of questions affects the number of images needed too, one ground-truth 
+              example sometimes help the model the most on <b>MRAG-BENCH</b>. We encourage the research on 
+              adaptatively deciding the number of necessary images based on the complexity of questions. 
+            </li>
+          </ul>          
+        </h2>
+
+        <div class="columns is-centered has-text-centered">
+          <img src="static/images/analysis_new.png" width="95%"/> 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+        @article{hu2024mragbench,
+          title={MRAG-Bench: Vision-Centric Evaluation for Retrieval-Augmented Multimodal Models},
+          author={Hu, Wenbo and Gu, Jia-Chen and Dou, Zi-Yi and Fayyaz, Mohsen and Lu, Pan and Chang, Kai-Wei and Peng, Nanyun},
+          journal={arXiv preprint arXiv:24},
+          year={2024}
+        }
+      </code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
